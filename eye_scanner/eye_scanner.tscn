@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7xjbp6rhsctk"]
+
+[ext_resource type="PackedScene" uid="uid://ebcljekm1hti" path="res://eye_scanner/eye_scanner.gltf" id="1_je1ck"]
+[ext_resource type="Shader" path="res://eye_scanner/eye_scanner.gdshader" id="2_10hls"]
+[ext_resource type="Texture2D" uid="uid://i7medw8x2lb" path="res://eye_scanner/zone02_heal_base.png" id="3_kqdkk"]
+[ext_resource type="Texture2D" uid="uid://uqme3vtiqmac" path="res://eye_scanner/zone02_heal_base_emission.png" id="4_46byi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yssq0"]
+render_priority = 0
+shader = ExtResource("2_10hls")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drni0"]
+resource_name = "Shader"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = ExtResource("3_kqdkk")
+roughness = 0.5
+emission_enabled = true
+emission_energy_multiplier = 2.2
+emission_texture = ExtResource("4_46byi")
+
+[sub_resource type="Environment" id="Environment_8n7gh"]
+glow_enabled = true
+glow_blend_mode = 1
+
+[node name="eye_scanner" instance=ExtResource("1_je1ck")]
+
+[node name="Cylinder_001" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_yssq0")
+surface_material_override/1 = SubResource("StandardMaterial3D_drni0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
+environment = SubResource("Environment_8n7gh")
